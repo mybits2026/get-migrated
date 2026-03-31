@@ -8,7 +8,7 @@ This project uses a `src`-first Next.js App Router structure with React 19, Type
 
 Desktop hero:
 
-![Landing page desktop preview](./public/landing-page.png)
+![Landing page desktop preview](./public/full-page.png)
 
 Mobile hero:
 
