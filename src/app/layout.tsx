@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
+
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const instrumentSans = Instrument_Sans({
@@ -20,9 +22,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Get Migrated | Nepal to Australia",
-  description:
-    "A corridor-focused landing page concept for Nepali students planning to study in Australia.",
+  title: siteConfig.metadata.title,
+  description: siteConfig.metadata.description,
 };
 
 export default function RootLayout({

@@ -8,11 +8,11 @@ This project uses a `src`-first Next.js App Router structure with React 19, Type
 
 Desktop hero:
 
-![Landing page desktop preview](./public/full-page.png)
+![Landing page desktop preview](./public/landing-page.jpg)
 
 Mobile hero:
 
-<img src="./public/landing-page-mobile.png" alt="Landing page mobile preview" width="360" />
+<img src="./public/landing-page-mobile.jpg" alt="Landing page mobile preview" width="360" />
 
 ## Design System
 
@@ -52,8 +52,8 @@ There is currently no configured test runner in `package.json`, so there is no f
 ├── docs/
 │   └── project-structure.md
 ├── public/
-│   ├── landing-page.png
-│   ├── landing-page-mobile.png
+│   ├── landing-page.jpg
+│   ├── landing-page-mobile.jpg
 │   └── ...
 ├── src/
 │   ├── app/
