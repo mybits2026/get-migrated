@@ -89,18 +89,53 @@ Before deploying:
 │   ├── endpoints.md
 │   └── project-structure.md
 ├── public/
+│   ├── landing-page.jpg
+│   ├── landing-page-mobile.jpg
+│   └── ...
 ├── src/
 │   ├── app/
-│   ├── assets/
 │   ├── components/
-│   ├── hooks/
 │   ├── lib/
-│   ├── styles/
 │   ├── tests/
-│   └── types/
+│   └── ...
+├── DESIGN.md
 ├── .env.example
 ├── next.config.ts
 ├── package.json
 ├── tsconfig.json
 └── README.md
 ```
+
+Detailed structure documentation: `docs/project-structure.md`.
+
+## Key Files
+
+- `src/app/page.tsx`: main landing page content and form flow
+- `src/app/layout.tsx`: global layout and font loading
+- `src/app/globals.css`: theme tokens and Tailwind theme mapping
+- `src/components/ui/*`: shared UI wrappers built on `@base-ui/react`
+- `DESIGN.md`: design source of truth for visual decisions
+
+## Path Aliases
+
+TypeScript alias is configured as:
+
+```ts
+@/* -> ./src/*
+```
+
+Example import:
+
+```ts
+import { Button } from "@/components/ui/button";
+```
+
+## Validation
+
+- Targeted lint: `npx eslint src/app/page.tsx`
+- Full compile and type validation: `npm run build`
+
+## Learn More
+
+- https://nextjs.org/docs
+- https://nextjs.org/learn

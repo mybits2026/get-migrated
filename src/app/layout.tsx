@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+
+const instrumentSans = Instrument_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
@@ -68,6 +71,11 @@ export const metadata: Metadata = {
     },
   },
 };
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
 
 export default function RootLayout({
   children,
@@ -77,9 +85,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(
+        "h-full",
+        "antialiased",
+        instrumentSans.variable,
+        fraunces.variable,
+        ibmPlexMono.variable,
+        "font-sans"
+      )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[var(--color-cloud)]">{children}</body>
     </html>
   );
 }

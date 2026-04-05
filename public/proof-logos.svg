@@ -1,0 +1,15 @@
+<svg width="640" height="140" viewBox="0 0 640 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="638" height="138" rx="27" fill="#F8FAFC" stroke="#E3E8EF"/>
+  <rect x="30" y="37" width="126" height="66" rx="20" fill="#0F2747"/>
+  <text x="48" y="64" fill="#A6B9CD" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2">PLACEHOLDER</text>
+  <text x="48" y="88" fill="#FFFFFF" font-family="Instrument Sans, sans-serif" font-size="19" font-weight="600">Partner Logo</text>
+  <rect x="178" y="37" width="126" height="66" rx="20" fill="#F4E7D3"/>
+  <text x="196" y="64" fill="#7B6B58" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2">PLACEHOLDER</text>
+  <text x="196" y="88" fill="#0F2747" font-family="Instrument Sans, sans-serif" font-size="19" font-weight="600">Visa Proof</text>
+  <rect x="326" y="37" width="126" height="66" rx="20" fill="#2F7D6D"/>
+  <text x="344" y="64" fill="#C9E8DF" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2">PLACEHOLDER</text>
+  <text x="344" y="88" fill="#FFFFFF" font-family="Instrument Sans, sans-serif" font-size="19" font-weight="600">Student Trust</text>
+  <rect x="474" y="37" width="136" height="66" rx="20" fill="#FFF2EE" stroke="#FFD0C2"/>
+  <text x="492" y="64" fill="#CC6A4D" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2">PLACEHOLDER</text>
+  <text x="492" y="88" fill="#0F2747" font-family="Instrument Sans, sans-serif" font-size="19" font-weight="600">Course Fit</text>
+</svg>
