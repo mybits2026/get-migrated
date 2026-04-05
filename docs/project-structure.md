@@ -14,6 +14,9 @@ This project follows a src-first Next.js App Router structure.
 - `src/assets/`: Non-public app assets imported into code.
 - `public/`: Static assets served from site root.
 - `docs/`: Project documentation.
+	- `docs/endpoints.md`: Route inventory and API contracts.
+	- `docs/engineering-runbook.md`: Setup, quality gates, security, and deployment checklist.
+	- `docs/project-structure.md`: Folder structure and architectural conventions.
 
 ## Conventions
 

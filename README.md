@@ -1,34 +1,32 @@
-# Get Migrated
+# get-migrated
 
-Corridor-focused landing page concept for Nepali students exploring study options in Australia.
+Everything you need to migrate around the world; be it for study, work, permanently or whatever clicks.
 
-This project uses a `src`-first Next.js App Router structure with React 19, TypeScript, and Tailwind CSS v4.
+This project uses a src-first Next.js App Router structure.
 
-## Preview
+## Tech Stack
 
-Desktop hero:
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Resend (lead notification email delivery)
 
-![Landing page desktop preview](./public/landing-page.jpg)
+## Quick Start
 
-Mobile hero:
-
-<img src="./public/landing-page-mobile.jpg" alt="Landing page mobile preview" width="360" />
-
-## Design System
-
-- Read [`DESIGN.md`](./DESIGN.md) before making any visual or UI changes.
-- Typography, color, spacing, layout direction, and product tone are defined there.
-- The current design direction is editorial trust with corridor-specific warmth for the Nepal to Australia route.
-
-## Getting Started
-
-Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-Run the development server:
+2. Set up environment:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Run development server:
 
 ```bash
 npm run dev
@@ -36,20 +34,59 @@ npm run dev
 
 Open http://localhost:3000 in your browser.
 
-## Available Scripts
+## Environment Variables
 
-- `npm run dev`: start the local development server
-- `npm run build`: create a production build
-- `npm run start`: run the production server
-- `npm run lint`: run ESLint across the repo
+Environment template: `.env.example`
 
-There is currently no configured test runner in `package.json`, so there is no full-suite or single-test command yet.
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical site URL for metadata/SEO routes. |
+| `RESEND_API_KEY` | Yes | Auth key for Resend API calls from server endpoints. |
+| `CONTACT_TO_EMAIL` | Yes | Inbox that receives lead notification emails. |
+| `CONTACT_FROM_EMAIL` | No | Sender address. Defaults to `onboarding@resend.dev`. |
+
+Notes:
+
+- With free/test setup, `onboarding@resend.dev` is acceptable for development.
+- For production deliverability, verify a sending domain in Resend and set `CONTACT_FROM_EMAIL` to that domain.
+
+## Scripts
+
+```bash
+npm run dev    # start local development server
+npm run lint   # run ESLint
+npm run build  # build for production
+npm run start  # run production build locally
+```
+
+## API and Route Documentation
+
+- Endpoint contracts and route inventory: `docs/endpoints.md`
+- Engineering runbook (quality gates, deployment, security): `docs/engineering-runbook.md`
+- Folder conventions: `docs/project-structure.md`
+
+## Lead Capture Overview
+
+- UI form lives on the home page and submits to `POST /api/contact`.
+- Backend validates payload and sends email notifications via Resend.
+- API route implementation: `src/app/api/contact/route.ts`
+- Email integration implementation: `src/lib/email.ts`
+
+## Deployment Notes
+
+Before deploying:
+
+1. Configure required environment variables in your hosting platform.
+2. Run `npm run lint` and `npm run build`.
+3. Validate a real form submission on the deployed URL.
 
 ## Project Structure
 
 ```text
 .
 ├── docs/
+│   ├── engineering-runbook.md
+│   ├── endpoints.md
 │   └── project-structure.md
 ├── public/
 │   ├── landing-page.jpg
@@ -62,6 +99,7 @@ There is currently no configured test runner in `package.json`, so there is no f
 │   ├── tests/
 │   └── ...
 ├── DESIGN.md
+├── .env.example
 ├── next.config.ts
 ├── package.json
 ├── tsconfig.json

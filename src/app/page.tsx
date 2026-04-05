@@ -5,24 +5,19 @@ import { Menu, X } from "lucide-react";
 import {
   ComponentProps,
   CSSProperties,
-  FormEvent,
   ReactNode,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
 
+import { ContactForm } from "@/components/contact-form";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -262,16 +257,6 @@ const faqs = [
   },
 ];
 
-const initialForm = {
-  name: "",
-  phone: "",
-  level: "After +2",
-  intake: "Feb 2027",
-};
-
-type FormState = typeof initialForm;
-type FormErrors = Partial<Record<keyof FormState, string>>;
-
 function Reveal({
   children,
   className,
@@ -346,73 +331,7 @@ function Reveal({
 }
 
 export default function Home() {
-  const [form, setForm] = useState<FormState>(initialForm);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const statusMessage = useMemo(() => {
-    if (isSubmitting) {
-      return "Sending your details. This usually takes a few seconds.";
-    }
-
-    if (isSubmitted) {
-      return `Your request is in. Expect a ${contact.responseTime.toLowerCase()}, or message on WhatsApp if your timeline is urgent.`;
-    }
-
-    if (Object.keys(errors).length > 0) {
-      return "Please fix the highlighted fields before submitting.";
-    }
-
-    return "";
-  }, [errors, isSubmitted, isSubmitting]);
-
-  function validate(nextForm: FormState) {
-    const nextErrors: FormErrors = {};
-
-    if (!nextForm.name.trim()) {
-      nextErrors.name = "Enter your full name.";
-    }
-
-    if (!nextForm.phone.trim()) {
-      nextErrors.phone = "Enter your phone number.";
-    }
-
-    return nextErrors;
-  }
-
-  function updateField(field: keyof FormState, value: string) {
-    setForm((current) => ({ ...current, [field]: value }));
-    setErrors((current) => {
-      if (!current[field]) {
-        return current;
-      }
-
-      const nextErrors = { ...current };
-      delete nextErrors[field];
-      return nextErrors;
-    });
-  }
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const nextErrors = validate(form);
-    setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length > 0) {
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    window.setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setForm(initialForm);
-    }, 900);
-  }
 
   return (
     <main className="bg-[var(--color-cloud)] pb-24 text-[var(--color-ink)] md:pb-0">
@@ -1044,160 +963,11 @@ export default function Home() {
             </div>
 
             <div>
-              <p
-                aria-live="polite"
-                className="min-h-6 text-sm text-[color:rgba(27,27,27,0.64)]"
-              >
-                {statusMessage}
+              <p className="mb-4 text-sm leading-6 text-[color:rgba(27,27,27,0.64)]">
+                Send us your details and message. If your timeline is urgent,
+                use WhatsApp for the fastest reply.
               </p>
-
-              {isSubmitted ? (
-                <div className="mt-2 rounded-[1.75rem] border border-[color:rgba(47,125,109,0.22)] bg-[color:rgba(47,125,109,0.08)] p-6">
-                  <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--color-eucalyptus)]">
-                    Request received
-                  </p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[var(--color-navy)]">
-                    Your counselling request is in.
-                  </h3>
-                  <p className="mt-3 max-w-2xl text-base leading-7 text-[color:rgba(27,27,27,0.72)]">
-                    Expect a response within one working day. If your intake
-                    timing is urgent, use WhatsApp so the team can triage you
-                    faster.
-                  </p>
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                    <a
-                      href={whatsappHref}
-                      className={cn(
-                        buttonVariants({ variant: "trust" }),
-                        "px-6",
-                      )}
-                    >
-                      Continue on WhatsApp
-                    </a>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="px-6"
-                      onClick={() => setIsSubmitted(false)}
-                    >
-                      Send another request
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <form
-                  className="mt-2 grid gap-4 sm:grid-cols-2"
-                  onSubmit={handleSubmit}
-                  noValidate
-                >
-                  <Label>
-                    Full name
-                    <Input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={(event) =>
-                        updateField("name", event.target.value)
-                      }
-                      aria-invalid={Boolean(errors.name)}
-                      aria-describedby={errors.name ? "name-error" : undefined}
-                      placeholder="Your name"
-                      className="bg-background"
-                    />
-                    {errors.name ? (
-                      <span
-                        id="name-error"
-                        className="text-sm text-[var(--color-error)]"
-                      >
-                        {errors.name}
-                      </span>
-                    ) : null}
-                  </Label>
-
-                  <Label>
-                    Phone number
-                    <Input
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
-                      onChange={(event) =>
-                        updateField("phone", event.target.value)
-                      }
-                      aria-invalid={Boolean(errors.phone)}
-                      aria-describedby={
-                        errors.phone ? "phone-error" : undefined
-                      }
-                      placeholder="98XXXXXXXX"
-                      className="bg-background"
-                    />
-                    {errors.phone ? (
-                      <span
-                        id="phone-error"
-                        className="text-sm text-[var(--color-error)]"
-                      >
-                        {errors.phone}
-                      </span>
-                    ) : null}
-                  </Label>
-
-                  <Label>
-                    Study level
-                    <Select
-                      name="level"
-                      value={form.level}
-                      onChange={(event) =>
-                        updateField("level", event.target.value)
-                      }
-                      className="bg-background"
-                    >
-                      <option>After +2</option>
-                      <option>Master&apos;s</option>
-                      <option>Diploma</option>
-                    </Select>
-                  </Label>
-
-                  <Label>
-                    Preferred intake
-                    <Select
-                      name="intake"
-                      value={form.intake}
-                      onChange={(event) =>
-                        updateField("intake", event.target.value)
-                      }
-                      className="bg-background"
-                    >
-                      <option>Feb 2027</option>
-                      <option>Jul 2027</option>
-                      <option>Not sure yet</option>
-                    </Select>
-                  </Label>
-
-                  <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="max-w-xl text-sm leading-6 text-[color:rgba(27,27,27,0.64)]">
-                      If the form feels slow or you need a faster reply, use
-                      WhatsApp as the backup route.
-                    </p>
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                      <a
-                        href={whatsappHref}
-                        className={cn(
-                          buttonVariants({ variant: "outline" }),
-                          "px-6",
-                        )}
-                      >
-                        WhatsApp instead
-                      </a>
-                        <Button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="px-7"
-                        >
-                          {isSubmitting ? "Sending..." : "Book My Free Session"}
-                        </Button>
-                    </div>
-                  </div>
-                </form>
-              )}
+              <ContactForm />
             </div>
           </div>
         </Reveal>
