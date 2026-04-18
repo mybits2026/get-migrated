@@ -4,8 +4,8 @@ export const siteConfig = {
   corridor: {
     origin: "Nepal",
     destination: "Australia",
-    label: "Nepal to Australia",
-    promise: "Nepal to Australia, planned properly.",
+    label: "PR Readiness",
+    promise: "PR Readiness, planned properly.",
   },
   contact: {
     email: "contact.mybit@gmail.com",
@@ -17,8 +17,8 @@ export const siteConfig = {
     responseTime: "Reply within 1 working day",
   },
   metadata: {
-    title: "Get Migrated | Nepal to Australia",
+    title: "Get Migrated | PR Readiness Concierge",
     description:
-      "A corridor-focused landing page concept for Nepali students planning to study in Australia.",
+      "A trusted prep layer for Nepali students and graduates in Australia seeking PR clarity.",
   },
 } as const;
