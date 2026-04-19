@@ -1,6 +1,6 @@
 {
   "name": "get-migrated",
-  "version": "0.1.0",
+  "version": "0.1.0", // Project version
   "private": true,
   "scripts": {
     "dev": "next dev",
