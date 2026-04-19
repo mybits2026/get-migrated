@@ -1,4 +1,4 @@
-# Get Migrated - MVP Feature Scope
+# Get Migrated - Australian PR journey explained
 
 ## Target Audience
 End-to-end Australian PR process for applicants already onshore in Australia (General Skilled Migration - subclasses 189, 190, 491).
@@ -30,9 +30,3 @@ End-to-end Australian PR process for applicants already onshore in Australia (Ge
 * **Status Tracking:** Application status changes to "Received", then "Initial Assessment".
 * **Request for Further Information (s56 RFI):** Managing the 28-day window to provide more documents if requested by a case officer.
 * **The Grant:** The final PR grant notice and VEVO update.
-
-## Key MVP Architecture Modules
-1. **Rules Engine:** A robust Points Calculator module that updates dynamically based on user inputs.
-2. **Document Vault:** Secure storage for passports, IELTS TRFs, Skills Assessment PDFs, and payslips.
-3. **Milestone Tracker:** A clear visual pipeline showing exactly where they are in these 5 phases.
-4. **Task & Deadline Manager:** Push notifications for expiring documents and deadlines.
